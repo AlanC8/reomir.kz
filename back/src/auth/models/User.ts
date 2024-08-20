@@ -6,9 +6,9 @@ export interface IUser extends Document {
   username?: string;
   password: string;
   city: string;
-  treeCount?: number;
   icon?: string;
   bonus?: number;
+  products: mongoose.Schema.Types.ObjectId[]; // Массив ObjectId продуктов
 }
 
 // Define the User schema
@@ -18,9 +18,9 @@ const UserSchema: Schema = new Schema(
     username: { type: String },
     password: { type: String, required: true },
     city: { type: String },
-    treeCount: { type: Number },
-    icon: { type: String , default: "https://art.pixilart.com/0433de3a9dca4b9.png"},
+    icon: { type: String, default: "https://art.pixilart.com/0433de3a9dca4b9.png"},
     bonus: { type: Number, default: 0 },
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }] // Поле для продуктов
   },
   {
     timestamps: true,
